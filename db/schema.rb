@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513120103) do
+ActiveRecord::Schema.define(:version => 20110827182938) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(:version => 20110513120103) do
   create_table "loan_options", :force => true do |t|
     t.string   "name"
     t.string   "range"
+    t.float    "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_options", :force => true do |t|
+    t.string   "name"
+    t.integer  "duration"
     t.float    "amount"
     t.datetime "created_at"
     t.datetime "updated_at"

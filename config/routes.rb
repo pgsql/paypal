@@ -1,6 +1,9 @@
 Calculator::Application.routes.draw do
+  
+
   namespace :admin do 
     resources :categories
+    resources :payment_options
     resources :states
     resources :colleges do
       get 'import', :on => :collection
