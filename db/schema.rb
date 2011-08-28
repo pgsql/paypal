@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110827182938) do
+ActiveRecord::Schema.define(:version => 20110828180152) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -32,10 +32,30 @@ ActiveRecord::Schema.define(:version => 20110827182938) do
   add_index "colleges", ["category_id"], :name => "index_colleges_on_category_id"
   add_index "colleges", ["state_id"], :name => "index_colleges_on_state_id"
 
+  create_table "coupons", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.integer  "max_users"
+    t.date     "validity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "loan_options", :force => true do |t|
     t.string   "name"
     t.string   "range"
     t.float    "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.date     "card_expires_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

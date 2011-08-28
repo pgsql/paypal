@@ -1,9 +1,12 @@
 Calculator::Application.routes.draw do
   
 
+  resources :orders
+
   namespace :admin do 
     resources :categories
     resources :payment_options
+    resources :coupons
     resources :states
     resources :colleges do
       get 'import', :on => :collection

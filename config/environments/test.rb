@@ -33,3 +33,50 @@ Calculator::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
+
+
+require "rubygems"
+require "active_merchant"
+
+ ActiveMerchant::Billing::Base.mode = :test
+
+ gateway = ActiveMerchant::Billing::PaypalGateway.new(
+    # API Credential
+   :login => "phani._1314544877_biz_api1.gmail.com",
+   :password => "1314544913",
+   :signature => "AmFh3qxMDR3V5ghOL4LiUBr5248cA9kvHabuu.n2-z8ltJ2m9wef3dYs"
+ )
+
+ credit_card = ActiveMerchant::Billing::CreditCard.new(
+   #user's credit card information
+   :type               => "visa",
+   :number             => "4105644566630043",
+   :verification_value => "123",
+   :month              => 1,
+   :year               => 2013,
+   :first_name         => "fatimah",
+   :last_name          => "aeroneta"
+ )
+
+ if credit_card.valid?
+   # or gateway.purchase to do both authorize and capture
+   response = gateway.authorize(1000, credit_card, :ip => "127.0.0.1",:billing_address => {
+     :name     => 'Test User',
+     :company  => '',
+     :address1 => '1 Main St',
+     :address2 => '2 Main St',
+     :city     => 'San Jose',
+     :state    => 'CA',
+     :country  => 'US',
+     :zip      => '95131',
+     :phone    => '408-678-0945'
+     })
+   if response.success?
+      gateway.capture(1000, response.authorization)
+     puts "Purchase complete!"
+   else
+     puts "Error: #{response.message}"
+   end
+ else
+   puts "Error: credit card is not valid. #{credit_card.errors.full_messages.join('. ')}"
+ end
