@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110828180152) do
+ActiveRecord::Schema.define(:version => 20110829173936) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(:version => 20110828180152) do
     t.date     "card_expires_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
+    t.float    "amount"
+    t.string   "status"
+    t.string   "card_number"
+    t.string   "card_verification"
+    t.string   "card_exires_on"
+    t.string   "email"
+    t.string   "login"
+    t.string   "password"
   end
 
   create_table "payment_options", :force => true do |t|

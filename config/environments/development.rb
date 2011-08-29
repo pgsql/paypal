@@ -27,3 +27,15 @@ Calculator::Application.configure do
 
 end
 
+
+require "rubygems"
+require "active_merchant"
+
+ ActiveMerchant::Billing::Base.mode = :test
+
+ GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+   :login => "phani._1314544877_biz@gmail.com",
+   :password => "1314544913",
+   :signature => "AmFh3qxMDR3V5ghOL4LiUBr5248cA9kvHabuu.n2-z8ltJ2m9wef3dYs"
+ )
+

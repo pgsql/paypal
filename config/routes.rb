@@ -1,6 +1,12 @@
 Calculator::Application.routes.draw do
   
 
+  get "users/sign_up"
+  get "orders/sign_up"
+
+   
+  resources :users
+
   resources :orders
 
   namespace :admin do 

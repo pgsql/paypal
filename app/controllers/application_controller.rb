@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   
-  before_filter :authenticate_user!
-  before_filter :check_for_access_period, :unless => lambda { |c| c.controller_name == 'sessions' }
-  before_filter :check_for_terms_acceptance, :unless => lambda { |c| c.controller_name == 'sessions' }
+#  before_filter :authenticate_user!
+#  before_filter :check_for_access_period, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'user' }
+#  before_filter :check_for_terms_acceptance, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'user' }
 
   protect_from_forgery
   def require_login
