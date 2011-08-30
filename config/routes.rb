@@ -7,7 +7,12 @@ Calculator::Application.routes.draw do
    
   #resources :users
 
-  resources :orders
+  resources :orders do
+    collection do
+      get 'success'
+      get 'failure'
+    end
+  end
 
   namespace :admin do 
     resources :categories

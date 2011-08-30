@@ -46,17 +46,27 @@ class OrdersController < ApplicationController
     params[:order][:amount] =  100
     @order = Order.new(params[:order])
 
+
     respond_to do |format|
-      if @order.save
+      @user = @order.create_user
+      if @order.save && @user.save
         if @order.purchase
-          render :action => "success"
+          format.html { render :action => "success"}
         else
-          render :action => "failure"
+          format.html { render :action => "failure"}
         end
       else
         format.html { render :action => "new" }
       end
     end
+  end
+
+  def sucess
+
+  end
+
+  def failure
+    
   end
 
 

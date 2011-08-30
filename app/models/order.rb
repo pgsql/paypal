@@ -3,6 +3,8 @@ class Order < ActiveRecord::Base
 
   validate_on_create :validate_card
 
+  belongs_to :user
+
   def purchase
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
     Rails.logger.info response.inspect
@@ -13,6 +15,12 @@ class Order < ActiveRecord::Base
   def price_in_cents
     amount.round
   end
+
+  def create_user
+    user = User.new({:first_name => self.first_name, :last_name => self.last_name, :email => self.email, :login => self.login,:password => self.password})
+    user.save
+    user
+   end
 
   private
 
@@ -49,4 +57,6 @@ class Order < ActiveRecord::Base
       :last_name          => last_name
     )
   end
+
+
 end
