@@ -5,7 +5,7 @@ Calculator::Application.routes.draw do
   get "orders/sign_up"
 
    
-  resources :users
+  #resources :users
 
   resources :orders
 
@@ -38,6 +38,8 @@ Calculator::Application.routes.draw do
   get "admin/dashboard" => "admin/dashboard#index"
   get "college" => "college#index"
   post "college" => "college#state_selected"
+
+ # root :to => 'sessions#new', :via => :get
 
   root :to => "surveys#new"
   # The priority is based upon order of creation:

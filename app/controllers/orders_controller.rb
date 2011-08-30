@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.xml
+  skip_before_filter :authenticate_user!
+  skip_before_filter :check_for_terms_acceptance
+  skip_before_filter :check_for_access_period
   def index
     @orders = Order.all
 
