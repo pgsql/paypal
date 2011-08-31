@@ -6,6 +6,9 @@
   <p><%= f.label :email %><br />
   <%= f.email_field :email %></p>
 
+  <p><%= f.label :login %><br />
+  <%= f.email_field :login %></p>
+
   <p><%= f.label :password %><br />
   <%= f.password_field :password %></p>
 
@@ -15,4 +18,4 @@
   <p><%= f.submit "Sign up" %></p>
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+<%=  link_to "Sign in", new_user_session_path %>
