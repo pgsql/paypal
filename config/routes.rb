@@ -1,8 +1,8 @@
 Calculator::Application.routes.draw do
   
 
-  get "users/sign_up"
-  get "orders/sign_up"
+  #get "users/sign_up"
+  #get "orders/sign_up"
 
    
   #resources :users
@@ -23,7 +23,7 @@ Calculator::Application.routes.draw do
       get 'import', :on => :collection
       post 'import', :on => :collection
     end
-    resources :users
+    #resources :users
   end
 
   devise_for :users

@@ -4,6 +4,7 @@
   <p><%= f.label :login %>
   <%= f.text_field :login %></p>
 
+
   <p><%= f.label :password %>
   <%= f.password_field :password %></p>
 
@@ -14,4 +15,4 @@
   <p><%= f.submit "Sign in" %></p>
 <% end %>
 
-<%=  link_to "Signup", '../orders/sign_up' %>
+<%=  link_to "Signup", new_user_registration_path %>
