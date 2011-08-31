@@ -41,6 +41,7 @@ class Admin::UsersController < AdminController
   # POST /admin/users.xml
   def create
     params[:user][:password_confirmation] = params[:user][:password]
+    Rails.logger.info params.inspect
     @user = User.new(params[:user])
     
     respond_to do |format|
