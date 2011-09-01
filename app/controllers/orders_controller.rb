@@ -47,7 +47,6 @@ class OrdersController < ApplicationController
   def create
     params[:order][:amount] =  100.00
     @order = Order.new(params[:order])
-
     respond_to do |format|
        if @order.save 
         if @order.purchase

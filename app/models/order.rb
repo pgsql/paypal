@@ -28,12 +28,13 @@ class Order < ActiveRecord::Base
     {
       :ip => ip_address,
       :billing_address => {
-        :name     => "Ryan Bates",
-        :address1 => "123 Main St.",
-        :city     => "New York",
-        :state    => "NY",
+        :name     => "Cody Fauser",
+        :address1 => "66 Oak Boulevard",
+        :address2 => "Suite 222",
+        :city     => "Beverly Hills",
+        :state    => "CA",
         :country  => "US",
-        :zip      => "10001"
+        :zip      => "90210"
       }
     }
   end
