@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
   def admin?
     !self.role.nil?
   end
+
+  def access_until?
+    true
+  end
 end

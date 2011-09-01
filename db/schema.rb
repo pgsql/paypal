@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110829173936) do
+ActiveRecord::Schema.define(:version => 20110901155434) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20110829173936) do
     t.string   "email"
     t.string   "login"
     t.string   "password"
+    t.integer  "duration"
   end
 
   create_table "payment_options", :force => true do |t|
@@ -122,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20110829173936) do
     t.integer  "role_id"
     t.string   "login",                :limit => 80
     t.date     "access_until"
+    t.string   "status"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

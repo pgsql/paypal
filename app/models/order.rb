@@ -7,13 +7,13 @@ class Order < ActiveRecord::Base
 
   def purchase
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
-    Rails.logger.info response.inspect
     self.status = "active" if response.success?
     response.success?
+    Rails.logger.info response.inspect
   end
 
   def price_in_cents
-    amount.round
+    amount.to_f.round
   end
 
   def create_user

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :check_for_access_period, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' }
   before_filter :check_for_terms_acceptance, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations'}
-
+  before_filter :check_user_status,:unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations'}
   protect_from_forgery
   def require_login
     if current_user.nil?
@@ -11,6 +11,12 @@ class ApplicationController < ActionController::Base
       redirect_to "/users/sign_in"
     else
       return current_user
+    end
+  end
+
+  def check_user_status
+    if current_user && !current_user.admin? && current_user.status != "active"
+      redirect_to new_order_path
     end
   end
   

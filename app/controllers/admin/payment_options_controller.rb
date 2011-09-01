@@ -61,7 +61,7 @@ class Admin::PaymentOptionsController < ApplicationController
     @payment_option = PaymentOption.find(params[:id])
 
     respond_to do |format|
-      if @category.update_attributes(params[:payment_option])
+      if @payment_option.update_attributes(params[:payment_option])
         format.html { redirect_to([:admin, @payment_option], :notice => 'PaymentOption was successfully updated.') }
         format.xml  { head :ok }
       else

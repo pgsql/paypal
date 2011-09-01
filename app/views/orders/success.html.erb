@@ -1,1 +1,9 @@
-SUCCESS!
+<%
+@order = Order.find(session[:order]) %>
+<%  unless @order.blank? %>
+  <%
+    @order.update_attribute(:status, "active")
+    current_user.update_attributes({:status => "active", :access_until => Time.now})
+  %>
+  SUCCESS!
+<% end  %>

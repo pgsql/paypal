@@ -1,8 +1,7 @@
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
+<% form_for @order do |f| %>
+   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
       <ul>
       <% @order.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,43 +10,55 @@
     </div>
   <% end %>
 
-<% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :ip_address %><br />
-    <%= f.text_field :ip_address %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %><br />
+  <p>
+    <%= f.label :first_name, "First Name *"%>
     <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
+  </p>
+  <p>
+    <%= f.label :last_name, "Last Name *" %>
     <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :card_type %><br />
-    <%= f.text_field :card_type %>
-  </div>
-  <div class="field">
-    <%= f.label :card_expires_on %><br />
-    <%= f.date_select :card_expires_on %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </p>
+  <p>
+    <%= f.label :email, "Email * "%>
+    <%= f.text_field :email %>
+  </p>
+  
+  <p>
+    <%= f.label :duration, "Select Duration * "%>
+    <%= f.select :amount,  PaymentOption.all.collect{|p| [p.name, p.amount]},  {:prompt => 'Select Duration of months'},{:onchange => "change_price()",:id=>"duration"} %>
+    <%= text_field_tag 'name', 'Your name',{:id=>"price",:disabled => true} %>
+  </p>
+
+  <p>
+    <%= f.label :card_type, "Card Type *"%>
+    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+  </p>
+
+
+  <p>
+    <%= f.label :card_number, "Card Number *" %>
+    <%= f.text_field :card_number %>
+  </p>
+
+  <p>
+    <%= f.label :card_verification, "Card Verification Value (CVV) *" %>
+    <%= f.password_field :card_verification %>
+  </p>
+
+  <p>
+    <%= f.label :card_expires_on, "Card Expires on * " %>
+    <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+  </p>
+
+
+  <p><%= f.submit "Submit" %></p>
 <% end %>
+
+  <script type="text/javascript">
+    
+      function change_price()
+      {
+        document.getElementById('price').value = document.getElementById('duration').value;
+      }
+    
+  </script>

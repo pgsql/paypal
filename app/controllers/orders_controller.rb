@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.xml
-#  skip_before_filter :authenticate_user!
-#  skip_before_filter :check_for_terms_acceptance
+  skip_before_filter :check_for_terms_acceptance, :only => [:new,:create,:sucess,:failure]
+  skip_before_filter :check_for_access_period, :only => [:new,:create,:sucess,:failure]
+
+  skip_before_filter :check_user_status, :only => [:new,:create,:sucess,:failure]
 #  skip_before_filter :check_for_access_period
   def index
     @orders = Order.all
@@ -43,14 +45,13 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.xml
   def create
-    params[:order][:amount] =  100
+    params[:order][:amount] =  100.00
     @order = Order.new(params[:order])
 
-
     respond_to do |format|
-      @user = @order.create_user
-      if @order.save && @user.save
+       if @order.save 
         if @order.purchase
+          session[:order] = @order
           format.html { render :action => "success"}
         else
           format.html { render :action => "failure"}
@@ -62,7 +63,6 @@ class OrdersController < ApplicationController
   end
 
   def sucess
-
   end
 
   def failure
