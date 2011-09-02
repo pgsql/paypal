@@ -25,8 +25,8 @@
   
   <p>
     <%= f.label :duration, "Select Duration * "%>
-    <%= f.select :amount,  PaymentOption.all.collect{|p| [p.name, p.amount]},  {:prompt => 'Select Duration of months'},{:onchange => "change_price()",:id=>"duration"} %>
-    <%= text_field_tag 'name', 'Your name',{:id=>"price",:disabled => true} %>
+    <%= f.select :duration,  PaymentOption.all.collect{|p| [p.name, p.amount]},  {:prompt => 'Select Duration of months'},{:onchange => "change_price()",:id=>"duration"} %>
+    <%= text_field_tag 'price', '120',{:id=>"amount",:disabled => true} %>
   </p>
 
   <p>
@@ -58,7 +58,7 @@
     
       function change_price()
       {
-        document.getElementById('price').value = document.getElementById('duration').value;
+        document.getElementById('amount').value = document.getElementById('duration').value;
       }
     
   </script>

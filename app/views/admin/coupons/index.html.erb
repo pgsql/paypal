@@ -1,10 +1,11 @@
-<h1>Listing coupons</h1>
+<h1>Listing Coupons</h1>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Code</th>
     <th>Max users</th>
+    <th>Value</th>
     <th>Validity</th>
     <th></th>
     <th></th>
@@ -16,6 +17,7 @@
     <td><%= coupon.name %></td>
     <td><%= coupon.code %></td>
     <td><%= coupon.max_users %></td>
+    <td><%= coupon.value %></td>
     <td><%= coupon.validity %></td>
     <td><%= link_to 'Show', [:admin, coupon] %></td>
     <td><%= link_to 'Edit', edit_admin_coupon_path(coupon) %></td>
@@ -26,4 +28,4 @@
 
 <br />
 
-<%= link_to 'New Coupon', new_admin_coupon_path %>
+<%= link_to 'New Coupon', new_admin_coupon_path %> | <%= link_to "back to home","/admin/dashboard"%>
