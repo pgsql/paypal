@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.xml
-  skip_before_filter :check_for_terms_acceptance, :only => [:new,:create,:sucess,:failure]
-  skip_before_filter :check_for_access_period, :only => [:new,:create,:sucess,:failure]
+  skip_before_filter :check_for_terms_acceptance, :only => [:new,:create,:sucess,:failure,:calculate_amount,:coupons_form]
+  skip_before_filter :check_for_access_period, :only => [:new,:create,:sucess,:failure,:calculate_amount,:coupons_form]
 
-  skip_before_filter :check_user_status, :only => [:new,:create,:sucess,:failure]
+  skip_before_filter :check_user_status, :only => [:new,:create,:sucess,:failure,:calculate_amount,:coupons_form]
 #  skip_before_filter :check_for_access_period
   def index
     @orders = Order.all
@@ -67,6 +67,23 @@ class OrdersController < ApplicationController
 
   def failure
     
+  end
+
+  def calculate_amount
+    session[:duration_price] = params[:duration]
+   session[:duration] = PaymentOption.find_by_amount(session[:duration_price]).name
+    unless params[:coupon].blank?
+      @coupon = Coupon.find_by_code(params[:coupon])
+      if @coupon
+        session[:coupon] = @coupon.value
+        session[:duration_price] = params["duration"].to_f - @coupon.value.to_f
+      end
+    end
+    redirect_to new_order_path
+  end
+
+  def coupons_form
+
   end
 
 

@@ -1,3 +1,14 @@
+
+
+You have selected : <b> <%=session[:duration] %></b><br />
+Discount on you coupon price :  <b><%=session[:duration_price] %></b><br />
+Actual price is <b><%=session[:duration_price] %></b>&nbsp;&nbsp;
+
+
+
+<%= link_to 'Click here to Change the duration', coupons_form_orders_path %>
+
+<br/>
 <% form_for @order do |f| %>
    <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -10,22 +21,8 @@
     </div>
   <% end %>
 
-<table width="80%">
-    <tr >
-      <td align="center">
-  <p>
-    <%= f.label :coupon, "Discount Coupon"%>
-    <%= text_field_tag 'coupon', '',{:id=>"coupon"} %>
-  </p>
-      </td>
-      <td>
-  <p>
-    <%= f.label :duration, "Duration (in Months) * "%>
-    <%= f.select :duration,  PaymentOption.all.collect{|p| [p.name, p.amount]},  {:prompt => 'Select Duration of months'},{:onchange => "change_price()",:id=>"duration"} %>
-    <%= text_field_tag 'price', '120',{:id=>"amount",:disabled => true} %>
-  </p>
-      </td></tr></table>
-  <table width="80%">
+<br/>
+  <table width="90%">
     <tr>
       <td>
 
@@ -84,7 +81,7 @@
     <%= f.label :card_expires_on, "Card Expires on * " %>
     <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p><%= f.submit "Pay Here" %></p>
 </td></tr></table>
 
 <br />
@@ -92,12 +89,3 @@
   
 
 <% end %>
-
-  <script type="text/javascript">
-    
-      function change_price()
-      {
-        document.getElementById('amount').value = document.getElementById('duration').value;
-      }
-    
-  </script>

@@ -4,6 +4,8 @@ Calculator::Application.routes.draw do
     collection do
       get 'success'
       get 'failure'
+      get 'coupons_form'
+      put 'calculate_amount'
     end
   end
 
