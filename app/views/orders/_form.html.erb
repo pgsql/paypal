@@ -10,24 +10,59 @@
     </div>
   <% end %>
 
+<table width="80%">
+    <tr >
+      <td align="center">
   <p>
-    <%= f.label :first_name, "First Name *"%>
-    <%= f.text_field :first_name %>
+    <%= f.label :coupon, "Discount Coupon"%>
+    <%= text_field_tag 'coupon', '',{:id=>"coupon"} %>
   </p>
+      </td>
+      <td>
   <p>
-    <%= f.label :last_name, "Last Name *" %>
-    <%= f.text_field :last_name %>
-  </p>
-  <p>
-    <%= f.label :email, "Email * "%>
-    <%= f.text_field :email %>
-  </p>
-  
-  <p>
-    <%= f.label :duration, "Select Duration * "%>
+    <%= f.label :duration, "Duration (in Months) * "%>
     <%= f.select :duration,  PaymentOption.all.collect{|p| [p.name, p.amount]},  {:prompt => 'Select Duration of months'},{:onchange => "change_price()",:id=>"duration"} %>
     <%= text_field_tag 'price', '120',{:id=>"amount",:disabled => true} %>
   </p>
+      </td></tr></table>
+  <table width="80%">
+    <tr>
+      <td>
+
+  <h3>Billing Address Details</h3>
+
+  <p>
+    <%= f.label :name, "First Name *"%>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :address1, "Address1 * "%>
+    <%= f.text_field :address1 %>
+  </p>
+
+  <p>
+    <%= f.label :address2, "Address2 * "%>
+    <%= f.text_field :address2 %>
+  </p>
+
+  <p>
+    <%= f.label :city, "City * "%>
+    <%= f.text_field :city %>
+  </p>
+
+  <p>
+    <%= f.label :country, "Country * "%>
+    <%= f.text_field :country %>
+  </p>
+
+  <p>
+    <%= f.label :zip, "Zip * "%>
+    <%= f.text_field :zip %>
+  </p>
+ </td>
+ <td>
+  <h3>Credit Card Details</h3>
 
   <p>
     <%= f.label :card_type, "Card Type *"%>
@@ -49,9 +84,13 @@
     <%= f.label :card_expires_on, "Card Expires on * " %>
     <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
   </p>
-
-
   <p><%= f.submit "Submit" %></p>
+</td></tr></table>
+
+<br />
+
+  
+
 <% end %>
 
   <script type="text/javascript">
