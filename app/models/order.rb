@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
     Rails.logger.info response.inspect
     if response.success?
       self.update_attributes({:status => "active", :tran => response.instance_variable_get(:@params)["transaction_id"],:message => response.instance_variable_get(:@message)})
-      self.user.update_attributes({:access_until => Date.today.next_month(self.duration)})
+      self.user.update_attributes({:status => "active",:access_until => Date.today.next_month(self.duration)})
       self.user.update_active
     end
     response.success?
