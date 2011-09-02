@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   
   validates_presence_of   :login
   validates_uniqueness_of :login
+
+  def update_active
+    self.status = "active"
+  end
   
   def admin?
     !self.role.nil?
