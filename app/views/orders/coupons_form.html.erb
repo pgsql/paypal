@@ -1,17 +1,19 @@
-  <h1><b>Step 1: Payment Page - Coupon </b></h1><br/>
-<% form_tag calculate_amount_orders_path, :method => :put, :remote => true do %>
+ <h1><b>Please Complete the payment process </b></h1><br/>
+<h1><b>Follow the below payment steps </b></h1><br/>
+<h1><b>Step 1: Payment Page - Coupon </b></h1><br/>
+ <% form_tag calculate_amount_orders_path, :method => :put, :remote => true do %>
 
 
     
       
       <p>
-        <%= label_tag 'coupon', 'Coupon' %>
+        <%= label_tag 'coupon', 'Coupon Code' %>
         <%= text_field_tag 'coupon', '' %>
       </p>
    
       
       <p>
-        <%= label_tag 'Duration', 'Duration' %>
+        <%= label_tag 'Duration', 'Duration (in Months)' %>
         <%= select_tag :duration,  options_from_collection_for_select(PaymentOption.all, "amount", "name"),{:onchange=>"change_price()"}
          %>
         <%= text_field_tag 'price', PaymentOption.first.amount ,{:id=>"amount",:disabled => true} %>

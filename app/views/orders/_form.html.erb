@@ -50,7 +50,7 @@ Present Price is <b><%=session[:duration_price] %></b>&nbsp;&nbsp;
   </p>
 
   <p>
-    <%= hidden_field_tag :amount,"0".to_s %>
+    <%= hidden_field_tag :amount, session[:duration_price].to_s %>
     <%= hidden_field_tag :duration,session[:duration_months].to_s %>
   </p>
 

@@ -1,8 +1,7 @@
 class Order < ActiveRecord::Base
   attr_accessor :card_number, :card_verification
-  validates_presence_of :name
-
-  validate_on_create :validate_card
+ 
+  #validate_on_create :validate_card
 
   belongs_to :user
 
@@ -12,7 +11,10 @@ class Order < ActiveRecord::Base
     if response.success?
       self.update_attributes({:status => "active", :tran => response.instance_variable_get(:@params)["transaction_id"],:message => response.instance_variable_get(:@message)})
       self.user.update_attributes({:status => "active",:access_until => Date.today.next_month(self.duration)})
-      self.user.update_active
+    else
+     
+      self.update_attributes({:status => "failed", :tran => response.instance_variable_get(:@params)["transaction_id"],:message => response.instance_variable_get(:@message)})
+      self.user.update_attributes({:status => "inactive"})
     end
     response.success?
   end

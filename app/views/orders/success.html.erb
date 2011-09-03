@@ -1,3 +1,5 @@
+<%= link_to 'Dashboard', '/welcome' %><br/>
+<h1><b>Payment Successfully  </b></h1><br/>
 <%
 @order = Order.find(session[:order]) %>
 
@@ -11,3 +13,6 @@ Your Transaction is successful!!   <br />
   Transaction ID : <%= @order.tran %> <br />
   Paypal Order message ID : <%= @order.tran %><br />
 <% end  %>
+
+
+  
