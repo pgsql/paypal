@@ -45,15 +45,20 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.xml
   def create
-    params[:order][:amount] =  100.00
+   
+    params[:order][:amount] = params[:amount]
+     params[:order][:duration] = params[:duration]
     params[:order][:first_name] = "first"
     params[:order][:last_name] = "last"
     @order = Order.new(params[:order])
     @order.user = current_user
+
     respond_to do |format|
-       if @order.save 
+       if @order.save
+         @order.purchase
+         session[:order] = @order.id
         if @order.purchase
-          session[:order] = @order
+          session[:order] = @order.id
           format.html { render :action => "success"}
         else
           format.html { render :action => "failure"}
@@ -80,6 +85,7 @@ class OrdersController < ApplicationController
     session[:duration_price] = params[:duration]
     session[:actual_price] = params[:duration]
    session[:duration] = PaymentOption.find_by_amount(session[:duration_price]).name
+   session[:duration_months] = PaymentOption.find_by_amount(session[:duration_price]).name
     unless params[:coupon].blank?
       @coupon = Coupon.find_by_code(params[:coupon])
       if @coupon
