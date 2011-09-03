@@ -1,26 +1,28 @@
+  <h1><b>Step 1: Payment Page - Coupon </b></h1><br/>
 <% form_tag calculate_amount_orders_path, :method => :put, :remote => true do %>
-  <table width="90%">
-    <tr >
-      <td align="center">
+
+
+    
+      
       <p>
         <%= label_tag 'coupon', 'Coupon' %>
         <%= text_field_tag 'coupon', '' %>
       </p>
-      </td>
-      <td>
+   
+      
       <p>
         <%= label_tag 'Duration', 'Duration' %>
-        <%= select_tag :duration,  options_from_collection_for_select(PaymentOption.all, "amount", "name"),{:onclick=>"change_price()"}
+        <%= select_tag :duration,  options_from_collection_for_select(PaymentOption.all, "amount", "name"),{:onchange=>"change_price()"}
          %>
-        <%= text_field_tag 'price', '120',{:id=>"amount",:disabled => true} %>
-  </p></td>
+        <%= text_field_tag 'price', PaymentOption.first.amount ,{:id=>"amount",:disabled => true} %>
+  </p>
 
-      <td align="center">
+      
       <p>
 
         <%= submit_tag "Submit", :name => nil %>
       </p>
-      </td></tr></table>
+
 <% end %>
 
 

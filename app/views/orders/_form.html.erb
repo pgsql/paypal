@@ -1,8 +1,9 @@
 
 
 You have selected : <b> <%=session[:duration] %></b><br />
-Discount on you coupon price :  <b><%=session[:duration_price] %></b><br />
-Actual price is <b><%=session[:duration_price] %></b>&nbsp;&nbsp;
+Actual Price is <b><%=session[:actual_price] %></b>&nbsp;&nbsp;<br/>
+Discount on you coupon price :  <b><%=session[:coupon].to_i %> % </b><br />
+Present Price is <b><%=session[:duration_price] %></b>&nbsp;&nbsp;
 
 
 
@@ -29,7 +30,7 @@ Actual price is <b><%=session[:duration_price] %></b>&nbsp;&nbsp;
   <h3>Billing Address Details</h3>
 
   <p>
-    <%= f.label :name, "First Name *"%>
+    <%= f.label :name, "Name *"%>
     <%= f.text_field :name %>
   </p>
 
@@ -39,7 +40,7 @@ Actual price is <b><%=session[:duration_price] %></b>&nbsp;&nbsp;
   </p>
 
   <p>
-    <%= f.label :address2, "Address2 * "%>
+    <%= f.label :address2, "Address2"%>
     <%= f.text_field :address2 %>
   </p>
 

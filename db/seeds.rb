@@ -11,6 +11,12 @@
 
 Role.create :name => 'admin'
 
+PaymentOption.create!(
+	[
+		{:name => 'Monthly', :duration => 1,:amount => 5}
+	]
+)
+
 User.create!(
 	[
 		{:login => 'admin', :login => "admin@example.com",:email => "admin@example.com", :password => "123123", :password_confirmation => "123123", :role_id => Role.find_by_name('admin').id}

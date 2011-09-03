@@ -46,6 +46,8 @@ class OrdersController < ApplicationController
   # POST /orders.xml
   def create
     params[:order][:amount] =  100.00
+    params[:order][:first_name] = "first"
+    params[:order][:last_name] = "last"
     @order = Order.new(params[:order])
     @order.user = current_user
     respond_to do |format|
@@ -70,13 +72,19 @@ class OrdersController < ApplicationController
   end
 
   def calculate_amount
+    session[:coupon] = ""
+    session[:duration_price] = ""
+    session[:duration_price] = ""
+     session[:actual_price] = ""
+
     session[:duration_price] = params[:duration]
+    session[:actual_price] = params[:duration]
    session[:duration] = PaymentOption.find_by_amount(session[:duration_price]).name
     unless params[:coupon].blank?
       @coupon = Coupon.find_by_code(params[:coupon])
       if @coupon
         session[:coupon] = @coupon.value
-        session[:duration_price] = params["duration"].to_f - @coupon.value.to_f
+        session[:duration_price] = params["duration"].to_f - params["duration"].to_f  * @coupon.value.to_f/100
       end
     end
     redirect_to new_order_path

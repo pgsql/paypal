@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
   attr_accessor :card_number, :card_verification
+  validates_presence_of :name
 
   validate_on_create :validate_card
 
@@ -32,13 +33,13 @@ class Order < ActiveRecord::Base
     {
       :ip => ip_address,
       :billing_address => {
-        :name     => "Cody Fauser",
-        :address1 => "66 Oak Boulevard",
-        :address2 => "Suite 222",
-        :city     => "Beverly Hills",
-        :state    => "CA",
-        :country  => "US",
-        :zip      => "90210"
+        :name     => self.name,
+        :address1 => self.address1,
+        :address2 => self.address2,
+        :city     => self.city,
+        :state    => self.state,
+        :country  => self.country,
+        :zip      => self.zip
       }
     }
   end
