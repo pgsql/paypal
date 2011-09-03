@@ -85,7 +85,7 @@ class OrdersController < ApplicationController
     session[:duration_price] = params[:duration]
     session[:actual_price] = params[:duration]
    session[:duration] = PaymentOption.find_by_amount(session[:duration_price]).name
-   session[:duration_months] = PaymentOption.find_by_amount(session[:duration_price]).name
+   session[:duration_months] = PaymentOption.find_by_amount(session[:duration_price]).duration
     unless params[:coupon].blank?
       @coupon = Coupon.find_by_code(params[:coupon])
       if @coupon
