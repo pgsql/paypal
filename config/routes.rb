@@ -39,9 +39,9 @@ Calculator::Application.routes.draw do
   get "college" => "college#index"
   post "college" => "college#state_selected"
 
+  root :to => "surveys#new"
  # root :to => 'sessions#new', :via => :get
 
-  root :to => "surveys#new"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
