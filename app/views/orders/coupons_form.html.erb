@@ -1,29 +1,64 @@
-  <h1><b>Step 1: Payment Page - Coupon </b></h1><br/>
-<% form_tag calculate_amount_orders_path, :method => :put, :remote => true do %>
-
-
-    
-      
-      <p>
+<div id="page">
+	<div class="top"></div>
+	<div class="content">
+		<div class="header page">
+			<h1>Step 1: Payment Page - Coupon</h1>
+		</div>
+		<div id="contact" class="padding">
+			
+			<% form_tag calculate_amount_orders_path, :method => :put, :remote => true, :id=> "coupon" do %>
+			<p>
         <%= label_tag 'coupon', 'Coupon' %>
-        <%= text_field_tag 'coupon', '' %>
+        <%= text_field_tag 'coupon', '',{:class=> "text_field"}%>
       </p>
    
       
       <p>
         <%= label_tag 'Duration', 'Duration' %>
-        <%= select_tag :duration,  options_from_collection_for_select(PaymentOption.all, "amount", "name"),{:onchange=>"change_price()"}
+        <%= select_tag :duration,  options_from_collection_for_select(PaymentOption.all, "amount", "name"),{:onchange=>"change_price()",:class=> "text_field"}
          %>
-        <%= text_field_tag 'price', PaymentOption.first.amount ,{:id=>"amount",:disabled => true} %>
+        </p>
+        <p>
+        <%= text_field_tag 'price', PaymentOption.first.amount ,{:id=>"amount",:disabled => true,:class=> "text_field"} %>
   </p>
+  
 
-      
-      <p>
 
-        <%= submit_tag "Submit", :name => nil %>
-      </p>
+<div class="send_form">
+<p><%= submit_tag "Complete Signup" ,:class=> "button"%></p>
+
+
+</div>
+
+	
+
+
+
+
+
+<div class="clear"></div>
+
+
 
 <% end %>
+
+
+
+</div>
+
+
+
+
+</div>
+<div class="clear"></div>
+
+<div class="bottom"></div>
+
+</div>
+
+
+
+
 
 
   <script type="text/javascript">
