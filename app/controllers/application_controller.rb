@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   
   def check_for_terms_acceptance
     if (session[:terms_accepted] != true && current_user.role.nil?) 
-      redirect_to welcome_path
+      redirect_to new_survey_path
     end
   end
 

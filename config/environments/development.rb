@@ -34,8 +34,8 @@ require "active_merchant"
  ActiveMerchant::Billing::Base.mode = :test
 
  GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-   :login => "seller_1229899173_biz_api1.railscasts.com",
-   :password => "FXWU58S7KXFC6HBE",
-   :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
+   :login => "fpalmas_api1.yahoo.com",
+   :password => "MUFS4RVQTVX6GP3U",
+   :signature => "A6dsRhme2PtW7.CCayVxyDL2c...AvDz0lcw4Wb5Zf4nQP-dKItis7oZ"
  )
 
