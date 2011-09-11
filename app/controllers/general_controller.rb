@@ -5,7 +5,11 @@ class GeneralController < ApplicationController
   skip_before_filter :check_user_status
 
 
-  
+  def index
+    if user_signed_in? 
+      redirect_to surveys_path
+    end
+  end  
 
   def contact
     @contact = ContactUs.new

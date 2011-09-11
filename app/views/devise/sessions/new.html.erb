@@ -1,50 +1,46 @@
-  <div id="page">
-  <div class="top"></div>
-  <div class="content">
-    <div class="header page">
-      <h1>Sign In</h1>
-    </div>
-    <div id="contact" class="padding">
-      <br />
+<div id="page">
+	<div class="top"></div>
+	<div class="content">
+		<div class="header page">
+			<h1>Sign In</h1>
+		</div>
+		<div id="contact" class="padding">
+			<br />
+			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+			<p><%= f.label :login  %><br />
+			<%= f.text_field :login ,:class=> "text_field"%></p>
 
+<p><%= f.label :password %><br />
+<%= f.password_field :password ,:class=> "text_field"%></p>
 
-     
-
-      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-        <p><%= f.label :login  %><br />
-  <%= f.email_field :login ,:class=> "text_field"%></p>
-
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password ,:class=> "text_field"%></p>
-
-  <br />
+<br />
 
 
 
 
 
-        <div class="send_form">
-          <p><%= f.submit "Sign in" ,:class=> "button"%></p>
+<div class="send_form">
+<p><%= f.submit "Sign in" ,:class=> "button"%></p>
 
 
-        </div>
+</div>
 
-        <div class="clear"></div>
-
-
-
-      <% end %>
+<div class="clear"></div>
 
 
 
-    </div>
+<% end %>
+
+
+
+</div>
 
 
 <%= render :partial => "devise/shared/links" %>
 
-  </div>
-  <div class="clear"></div>
+</div>
+<div class="clear"></div>
 
-  <div class="bottom"></div>
+<div class="bottom"></div>
 
 </div>
