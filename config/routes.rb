@@ -1,7 +1,13 @@
 Calculator::Application.routes.draw do
 
-  get "general/contact"
+  #get "general/contact"
   put "general/save_contact"
+
+  get "about" => "general#about"
+  get "tour" => "general#tour"
+  get "pricing" => "general#pricing"
+  get "contact" => "general#contact"
+  
   resources :orders do
     collection do
       get 'success'
