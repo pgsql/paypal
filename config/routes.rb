@@ -7,6 +7,8 @@ Calculator::Application.routes.draw do
   get "tour" => "general#tour"
   get "pricing" => "general#pricing"
   get "contact" => "general#contact"
+
+   root :to => "general#index"
   
   resources :orders do
     collection do
