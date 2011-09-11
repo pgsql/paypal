@@ -1,0 +1,91 @@
+<div id="page">
+  <div class="top"></div>
+  <div class="content">
+    <div class="header page">
+      <h1>Contact Us</h1>
+    </div>
+    <div id="contact" class="padding">
+      <br />
+
+      <p>Looking for help?  Are you interested in a group rate or a coporate account?  Any other questions?  Fill out the form below and team member from myfinancialfit.com will get in touch with you as soon as possible.</p>
+
+      <div class="section_title">
+
+        <h3>Send Us An Email</h3>
+
+      </div>
+
+      <% form_for @contact, :as => :contact_us, :url => general_save_contact_path(@post), :html => { :method => :put, :class => "edit_post", :id => "edit_post_45" } do |f| %>
+        <% if @contact.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being contact us:</h2>
+
+            <ul>
+              <% @contact.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <p><%= f.label :name, "Your Name" %>
+          <%= f.text_field :name,:class =>"text_field" %></p>
+
+
+        <p><%= f.label :email, "Your Email" %>
+          <%= f.email_field :email,:class =>"text_field" %></p>
+
+        <p><%= f.label :company, "Company/School Name" %>
+          <%= f.text_field :company,:class =>"text_field" %></p>
+
+         <p><%= f.label :phone_number, "Phone Number" %>
+
+          <%= f.text_field :phone_number,:class =>"text_field" %></p>
+
+
+        <p class="last"><label>Subject</label>
+
+          <select name="subject" id="subject" class="text_field">
+
+            <option value="General Support">General Support</option>
+
+            <option value="General Support">Group Rate Inquiry</option>
+
+            <option value="General Support">Financial Company Inquiry</option>
+
+          </select></p>
+
+
+        <div class="clear"></div>
+
+
+        <p><%= f.label :message, "Message" %>
+          <%= f.text_area :message,:class =>"text_field" %></p>
+
+
+
+
+
+        <div class="send_form">
+          <p><%= f.submit "Send Email", :class => "button" %></p>
+
+
+        </div>
+
+        <div class="clear"></div>
+
+
+
+      <% end %>
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="bottom"></div>
+
+</div>

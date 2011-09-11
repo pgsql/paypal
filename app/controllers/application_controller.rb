@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   
-  before_filter :authenticate_user!, :except => [:index, :about, :tour, :contact, :pricing] 
-  before_filter :check_for_access_period, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' || c.controller_name == 'passwords'}, :except => [:index, :about, :tour, :contact, :pricing]
-  before_filter :check_for_terms_acceptance, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' || c.controller_name == 'passwords'}, :except => [:index, :about, :tour, :contact, :pricing]
-  before_filter :check_user_status,:unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' || c.controller_name == 'passwords'}, :except => [:index, :about, :tour, :contact, :pricing]
+  before_filter :authenticate_user!
+  before_filter :check_for_access_period, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' || c.controller_name == 'passwords' || c.controller_name == 'general'}
+  before_filter :check_for_terms_acceptance, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' || c.controller_name == 'passwords' || c.controller_name == 'general'}
+  before_filter :check_user_status,:unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' || c.controller_name == 'passwords'|| c.controller_name == 'general'}
   protect_from_forgery
   def require_login
     if current_user.nil?

@@ -1,5 +1,7 @@
 Calculator::Application.routes.draw do
- 
+
+  get "general/contact"
+  put "general/save_contact"
   resources :orders do
     collection do
       get 'success'
