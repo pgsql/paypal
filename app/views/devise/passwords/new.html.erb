@@ -19,9 +19,11 @@
 
           <p><%= f.label :email %><br />
             <%= f.email_field :email ,:class=> "text_field"%></p>
+          <div class="clear"></div>
          
-          <p><%= f.submit "Send me reset password instructions",:class=>"button" %></p>
-         
+          <p><%= f.submit "Send me reset password instructions", :class => "button submit" %></p>
+        
+
         <% end %>
       </div>
       <div class="right">
@@ -44,7 +46,6 @@
 
       <div class="clear"></div>
 
-      <%= render :partial => "devise/shared/links" %>
 
     </div>
 
