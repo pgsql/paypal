@@ -39,7 +39,12 @@ Calculator::Application.routes.draw do
   get "college" => "college#index"
   post "college" => "college#state_selected"
 
-  root :to => "surveys#new"
+  get "about" => "application#about"
+  get "tour" => "application#tour"
+  get "pricing" => "application#pricing"
+  get "contact" => "application#contact"
+  #root :to => "surveys#new"
+  root :to => "application#index"
  # root :to => 'sessions#new', :via => :get
 
   # The priority is based upon order of creation:

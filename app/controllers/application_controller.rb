@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   
-  before_filter :authenticate_user!
-  before_filter :check_for_access_period, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' }
-  before_filter :check_for_terms_acceptance, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations'}
-  before_filter :check_user_status,:unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations'}
+  before_filter :authenticate_user!, :except => [:index, :about, :tour, :contact, :pricing] 
+  before_filter :check_for_access_period, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' || c.controller_name == 'passwords'}, :except => [:index, :about, :tour, :contact, :pricing]
+  before_filter :check_for_terms_acceptance, :unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' || c.controller_name == 'passwords'}, :except => [:index, :about, :tour, :contact, :pricing]
+  before_filter :check_user_status,:unless => lambda { |c| c.controller_name == 'sessions' || c.controller_name == 'registrations' || c.controller_name == 'passwords'}, :except => [:index, :about, :tour, :contact, :pricing]
   protect_from_forgery
   def require_login
     if current_user.nil?
@@ -43,4 +43,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def index
+  end
+
+  def about
+  end
+
+  def tour
+  end
+
+  def pricing
+  end
+
+  def contact
+  end
 end
