@@ -1,17 +1,50 @@
-<h2>Sign in</h2>
+  <div id="page">
+  <div class="top"></div>
+  <div class="content">
+    <div class="header page">
+      <h1>Sign In</h1>
+    </div>
+    <div id="contact" class="padding">
+      <br />
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
+
+     
+
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <p><%= f.label :email  %><br />
+  <%= f.email_field :email ,:class=> "text_field"%></p>
 
   <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+  <%= f.password_field :password ,:class=> "text_field"%></p>
 
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
+  <br />
 
-  <p><%= f.submit "Sign in" %></p>
-<% end %>
+
+
+
+
+        <div class="send_form">
+          <p><%= f.submit "Sign in" ,:class=> "button"%></p>
+
+
+        </div>
+
+        <div class="clear"></div>
+
+
+
+      <% end %>
+
+
+
+    </div>
+
 
 <%= render :partial => "devise/shared/links" %>
+
+  </div>
+  <div class="clear"></div>
+
+  <div class="bottom"></div>
+
+</div>
