@@ -51,7 +51,7 @@ end
 #
 #]
 #
-#ActiveMerchant::Billing::Base.mode = :production
+ActiveMerchant::Billing::Base.mode = :production
 #  paypal_options = {
 #    :login => "seller_1229899173_biz_api1.railscasts.com",
 #    :password => "FXWU58S7KXFC6HBE",
@@ -60,17 +60,10 @@ end
 #  ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
 #  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
 
+#ActiveMerchant::Billing::Base.gateway_mode = :test
+ ActiveMerchant::Billing::PaypalGateway.pem_file = File.read(RAILS_ROOT + '/config/cert_key_pem_production.txt')
+$PAYPAL_LOGIN = 'fp_api1.managingcollegecost.com'
+$PAYPAL_PASSWORD = 'B6P9C49RTKAGR4M3'
 
-GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-    # API Credential
-   :login => "fp_api1.managingcollegecost.com",
-   :password => "XWDAT4H8TVY7GA44",
-   :signature => "Aa59XIloKHq.H93nnzorYJToE2DPAB-ow7ylfokN4DOgqsauo4Toi-SL"
- )
-##ActiveMerchant::Billing::Base.gateway_mode = :test
-# ActiveMerchant::Billing::PaypalGateway.pem_file = File.read(RAILS_ROOT + '/config/cert_key_pem_production.txt')
-#$PAYPAL_LOGIN = 'fp_api1.managingcollegecost.com'
-#$PAYPAL_PASSWORD = 'B6P9C49RTKAGR4M3'
-#
-#GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(:login=>$PAYPAL_LOGIN, :password=>$PAYPAL_PASSWORD)
+GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(:login=>$PAYPAL_LOGIN, :password=>$PAYPAL_PASSWORD)
 

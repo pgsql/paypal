@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   validates_presence_of :zip
   
 
-  validate_on_create :validate_card
+  #validate_on_create :validate_card
 
   belongs_to :user
 
