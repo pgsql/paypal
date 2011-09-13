@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   validates_presence_of :zip
   
 
-  #validate_on_create :validate_card
+  validate_on_create :validate_card
 
   belongs_to :user
 
@@ -24,8 +24,14 @@ class Order < ActiveRecord::Base
   end
 
   def price_in_cents
-    amount.to_f.round
+    correct_amount.round
   end
+
+  def correct_amount
+    amount * 100
+  end
+
+
 
   def create_user
     user = User.new({:first_name => self.first_name, :last_name => self.last_name, :email => self.email, :login => self.login,:password => self.password})
