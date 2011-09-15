@@ -1,6 +1,7 @@
 class Devise::PasswordsController < ApplicationController
   prepend_before_filter :require_no_authentication
   include Devise::Controllers::InternalHelpers
+
   layout "sessions"
   # GET /resource/password/new
   def new
@@ -32,8 +33,7 @@ class Devise::PasswordsController < ApplicationController
     self.resource = resource_class.reset_password_by_token(params[resource_name])
 
     if resource.errors.empty?
-      flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
-      set_flash_message(:notice, flash_message) if is_navigational_format?
+      set_flash_message(:notice, :updated) if is_navigational_format?
       sign_in(resource_name, resource)
       respond_with resource, :location => redirect_location(resource_name, resource)
     else
@@ -49,4 +49,3 @@ class Devise::PasswordsController < ApplicationController
     end
 
 end
-
