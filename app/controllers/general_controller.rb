@@ -3,7 +3,7 @@ class GeneralController < ApplicationController
   skip_before_filter :check_for_terms_acceptance
   skip_before_filter :check_for_access_period
   skip_before_filter :check_user_status
-
+  layout "sessions"
 
   def index
     if user_signed_in? 
