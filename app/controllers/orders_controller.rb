@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
 
   skip_before_filter :check_user_status, :only => [:new,:create,:sucess,:failure,:calculate_amount,:coupons_form]
 #  skip_before_filter :check_for_access_period
+
+  
   def index
     @orders = Order.all
 
